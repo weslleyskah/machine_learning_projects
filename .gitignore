@@ -1,0 +1,14 @@
+# Folders
+## Virtual Environment
+venv
+## Datasets:
+datasets
+## Models:
+models
+## Python
+__pycache__
+
+# Files
+## Lyx Document
+*.lyx~
+*.lyx#

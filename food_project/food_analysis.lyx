@@ -1,0 +1,794 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass book
+\begin_preamble
+\date{}
+\author{Weslley Matheus}
+\usepackage{listings,color,xcolor}
+
+\lstdefinestyle{batch-file}{
+    backgroundcolor={\color{gray!10}},
+    frame=single,
+    framerule=1pt,
+    rulecolor={\color{gray!50}},
+    breaklines=true,
+	breakindent=0pt,
+    basicstyle={\fontfamily{pcr}\selectfont\mdseries\footnotesize},
+    commentstyle={\color{green!60!black}},
+    morecomment={[l]{::}}
+}
+
+\lstdefinestyle{python-file}{
+    language=Python,
+    backgroundcolor={\color{gray!10}},
+    frame=single,  
+    framerule=1pt,  
+    rulecolor={\color{gray!50}},  
+    breaklines=true,  
+    breakindent=0pt,  
+    basicstyle={\fontfamily{pcr}\selectfont\mdseries\footnotesize},  % Font
+    commentstyle={\color{green!40!black}},  % Comment
+    keywordstyle={\color{blue!60!white}\bfseries},  % Keyword
+    stringstyle={\color{orange!70!black}\bfseries},  % String
+    identifierstyle=\color{black},  % Variable
+    emph={True, False, None, break, class, continue, def, del, if, pass,
+	open, with, while, assert, return, in, is, not, or, lambda, elif, else},
+    emphstyle={\color{magenta!80!black}\bfseries},  % True, False, None
+	morekeywords={from, import, global}
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children no
+\language american
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\spacing onehalf
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification false
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth -2
+\tocdepth 1
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle plain
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+\size giant
+\color black
+Analysis 1:
+ Food Dataset from the U.S.
+ Department of Agriculture
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Linear Regression using the Food Dataset from the USDA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\noindent
+Dataset Information
+\end_layout
+
+\begin_layout Section
+\noindent
+Dataset Information,
+ Cleaning and Transformation
+\end_layout
+
+\begin_layout Itemize
+Foundation Foods Dataset:
+ fdc.nal.usda.gov/download-datasets
+\end_layout
+
+\begin_layout Itemize
+Only 278 food items were analyzed,
+ according to the dataset documentation,
+ mostly natural and unprocessed foods.
+\end_layout
+
+\begin_layout Itemize
+Food items (rows) with missing nutrient values were removed from the dataset sample.
+\end_layout
+
+\begin_layout Itemize
+Specific columns from the dataset – Food Names (e.g:
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Lettuce,
+ leaf,
+ green,
+ raw
+\begin_inset Quotes erd
+\end_inset
+
+),
+ Food Categories (e.g:
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Vegetables and Vegetable Products
+\begin_inset Quotes erd
+\end_inset
+
+),
+ Food Nutrients (e.g:
+ 
+\begin_inset Quotes eld
+\end_inset
+
+4.066 22.046 0.175 0.156 94.008
+\begin_inset Quotes erd
+\end_inset
+
+),
+ and Nutrient Names (
+\begin_inset Quotes eld
+\end_inset
+
+Carbohydrates (g) Energy (kcal) Nitrogen (g) Fats (g) Water (g)
+\begin_inset Quotes erd
+\end_inset
+
+) – were merged by shared id columns,
+ which were renamed to not cause compilation problems.
+ These were csv files that were combined into a single dataframe for human readability.
+ 
+\end_layout
+
+\begin_layout Itemize
+The resulting dataframe was saved in the file 
+\family typewriter
+food_dataset_reshaped.csv 
+\family default
+inside the datasets folder 
+\family typewriter
+datasets/food_data
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+All the numerical nutrient columns were standardized through the transformation pipeline.
+\end_layout
+
+\begin_layout Section
+Data Cleaning:
+ delete,
+ create and merge files and columns
+\end_layout
+
+\begin_layout Standard
+The food data from the USDA came broken down into different files.
+ It was necessary to merge the columns – food names,
+ food categories,
+ nutrient names,
+ nutrient values – by linking them together through shared id columns into a single dataset.
+ This dataset was ordered so the columns – food name,
+ category and nutrient values – were correctly aligned.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Linear Regression of the Protein Column
+\end_layout
+
+\begin_layout Section
+\noindent
+
+\series bold
+\size larger
+Root Mean Square Error
+\end_layout
+
+\begin_layout Standard
+The linear regression of the Protein Column of the Foundation Foods Database from the USDA was done by utilizing only a few major food nutrients – Carbohydrates,
+ Lipids (Fats),
+ Energy,
+ Water,
+ and Nitrogen – as feature columns to predict the values of the label column – Protein.
+\end_layout
+
+\begin_layout Standard
+The Linear Regression Algorithm performed better,
+ with lower Root Mean Square Error values across 10 subsets compared to the Decision Tree and Random Forest algorithms.
+ Hence,
+ on these subsets,
+ the Linear Regression Algorithm produced a prediction column with predicted protein values for the food items that were far closer to the original protein values in the label column than those produced by the Decision Tree and Random Forest algorithms.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/RMSE_scores.png
+	display false
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\noindent
+
+\series bold
+\size larger
+Linear Correlation and Column Weight
+\end_layout
+
+\begin_layout Standard
+The Nitrogen column had the strongest linear correlation with the protein column and the highest column weight in predicting the values of the protein column.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/linear_correlation_Proteins (g)_Nitrogen (g).png
+	display false
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/column_weights.png
+	display false
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Note:
+
+\series default
+ An attempt was made to utilize every available nutrient value for each food item.
+ However,
+ there were too many missing values for some nutrients (e.g.,
+ vitamins,
+ minerals,
+ etc.).
+ Even after performing the imputation of the missing values with the mean of the respective nutrient column,
+ the results were noisy when printing the column weights (feature importances) and the linear correlation between the nutrient columns and the protein column.
+\end_layout
+
+\begin_layout Section
+Prediction Columns
+\end_layout
+
+\begin_layout Standard
+The first 10 protein values of the prediction columns made by the 3 algorithms – Linear Regression,
+ Decision Tree,
+ and Random Forest – and the label column with the true values:
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "C:/Users/Wes/Desktop/machine_learning_projects/datasets/food_data/prediction_columns.csv"
+lstparams "style={batch-file},firstline=0,lastline=11"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+And the next figure shows a scatter plot between the predicted values of the prediction columns made by the algorithms and the original protein values of the label column:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/scatter_plot_prediction_columns.png
+	display false
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Full Code
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "code/food_data.py"
+lstparams "style={python-file},caption={Linear Regression of the protein column from the Food Dataset of the USDA.}"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Appendix
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\noindent
+Formulas
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+Mean
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+m=\frac{1}{n}\sum_{i=1}^{n}v_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+Variance
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\color black
+\begin_inset Formula 
+\[
+V=\frac{1}{n}\sum_{i=1}^{n}(v_{i}-m)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Deviation from the mean:
+ 
+\begin_inset Formula ${\color{black}v_{i}-mean}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+Standard Deviation
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\color black
+\begin_inset Formula $SD=\sqrt{V}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+Root Mean Square Error
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\color black
+\begin_inset Formula 
+\[
+RMSE(\boldsymbol{X},h)=\sqrt{\frac{1}{m}\sum_{i=1}^{m}\left(h(x^{(i)})-y^{(i)}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+RMSE({\color{black}\boldsymbol{Dataset}},MLAlgorithm)=\sqrt{\frac{1}{rows}\sum_{i=1}^{rows}\left(MLAlgorithm(predicted\:value^{(i)})-label\:value^{(i)}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Euclidean distance:
+ straight line 
+\color black
+
+\begin_inset Formula $d=\sqrt{\varDelta x^{2}+\varDelta y^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The ML Algorithm takes into consideration all the column values of the dataset to form a column of predicted values.
+\end_layout
+
+\begin_layout Itemize
+The RMSE measures the standard deviation of the predicted values from the label values.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+Mean Absolute Error
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+MAE(\boldsymbol{X},h)=\frac{1}{m}\sum_{i=1}^{m}\mid h(x^{(i)})-y^{(i)}\mid
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+MAE(Dataset,MLAlgorithm)=\frac{1}{rows}\sum_{i=1}^{rows}\mid MLAlgorithm(predicted\:value^{(i)})-label\:value^{(i)}\mid
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Manhattan distance:
+ grid 
+\color black
+
+\begin_inset Formula $d=\mid\varDelta x\mid+\mid\varDelta y\mid$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Both the RMSE and the MAE are ways to measure the distance between two vectors:
+ the column of predicted values from the column of label values.
+\end_layout
+
+\begin_layout Itemize
+The mean absolute error is preferred when the data has many outliers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+Difference between RMSE and Standard Deviation:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\color black
+\begin_inset Formula 
+\[
+RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{n}\left(y_{predicted}^{(i)}-y_{label}^{(i)}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\color black
+\begin_inset Formula 
+\[
+STD=\sqrt{\frac{1}{n}\sum_{i=1}^{n}\left(y_{predicted}^{(i)}-mean\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+RMSE (Root Mean Squared Error) measures the average magnitude (value) of the differences (errors) between the predicted values and the true values (labels).
+ In other words,
+ it’s the average "distance" between the predicted values and the label values.
+ It is the deviation from the label.
+\end_layout
+
+\begin_layout Standard
+Standard Deviation measures the average distance of the differences between the predicted values from their own mean.
+ It measures how spread out the values (in a dataset) are from the mean value.
+ When applied to predictions,
+ it measures how spread out the predicted values are from their own mean.
+ It is the deviation from the mean.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Standardization of a Column
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+Column=V_{0},V_{1},V_{2},V_{3},...V_{n}\rightarrow Column'=Z_{0},Z_{1},Z_{2},Z_{3},...Z_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+Z_{i}=\frac{V_{i}-mean(Column)}{Standard\:Deviation(Column)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+Mean(Column')=\frac{1}{n}\sum_{i=1}^{n}(Z_{i})\simeq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\color black
+\begin_inset Formula 
+\[
+SD(Column')=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(Z_{i}-mean')^{2}}\simeq1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
