@@ -143,9 +143,9 @@ figs-within-sections
 \series bold
 \size giant
 \color black
-Analysis 1:
- Food Dataset from the U.S.
- Department of Agriculture
+Analysis:
+ Housing Dataset from California,
+ 1990
 \end_layout
 
 \begin_layout Standard
@@ -176,247 +176,66 @@ Linear Regression
 \end_layout
 
 \begin_layout Chapter
-\noindent
 Dataset Information
 \end_layout
 
-\begin_layout Section
-\noindent
-Dataset Information,
- Cleaning and Transformation
+\begin_layout Itemize
+20,640 rows (house districts) with 10 columns:
+ longitude,
+ latitude,
+ housing_median_age,total_rooms,
+ total_bedrooms,
+ population,
+ households,
+ median_income,
+ median_house_value,
+ ocean_proximity.
 \end_layout
 
 \begin_layout Itemize
-Foundation Foods Dataset:
- fdc.nal.usda.gov/download-datasets
-\end_layout
-
-\begin_layout Itemize
-Only 278 food items were analyzed,
- according to the dataset documentation,
- mostly natural and unprocessed foods.
-\end_layout
-
-\begin_layout Itemize
-Food items (rows) with missing nutrient values were removed from the dataset sample.
-\end_layout
-
-\begin_layout Itemize
-Specific columns from the dataset – Food Names (e.g:
- 
-\begin_inset Quotes eld
-\end_inset
-
-Lettuce,
- leaf,
- green,
- raw
+The transformation pipeline created 2 numerical columns –
 \begin_inset Quotes erd
 \end_inset
 
-),
- Food Categories (e.g:
- 
-\begin_inset Quotes eld
-\end_inset
-
-Vegetables and Vegetable Products
+rooms_per_household
 \begin_inset Quotes erd
 \end_inset
 
-),
- Food Nutrients (e.g:
- 
+ and 
 \begin_inset Quotes eld
 \end_inset
 
-4.066 22.046 0.175 0.156 94.008
+population_per_household
 \begin_inset Quotes erd
 \end_inset
 
-),
- and Nutrient Names (
+–,
+ transformed the numerical columns by doing the imputation of missing values with the column mean and standardization of the columns and encoded the row values of the text column 
 \begin_inset Quotes eld
 \end_inset
 
-Carbohydrates (g) Energy (kcal) Nitrogen (g) Fats (g) Water (g)
+ocean_proximity
 \begin_inset Quotes erd
 \end_inset
 
-) – were merged by shared id columns,
- which were renamed to not cause compilation problems.
- These were csv files that were combined into a single dataframe for human readability.
- 
+ into binary vectors.
 \end_layout
 
 \begin_layout Itemize
-The resulting dataframe was saved in the file 
-\family typewriter
-food_dataset_reshaped.csv 
-\family default
-inside the datasets folder 
-\family typewriter
-datasets/food_data
-\family default
-.
+The machine learning algorithms created a prediction column based on the label column 
+\begin_inset Quotes eld
+\end_inset
+
+median_house_value
+\begin_inset Quotes erd
+\end_inset
+
+ using a stratified version of the dataset.
 \end_layout
 
 \begin_layout Itemize
-All the numerical nutrient columns were standardized through the transformation pipeline.
-\end_layout
-
-\begin_layout Section
-Data Cleaning:
- delete,
- create and merge files and columns
-\end_layout
-
-\begin_layout Standard
-The food data from the USDA came broken down into different files.
- It was necessary to merge the columns – food names,
- food categories,
- nutrient names,
- nutrient values – by linking them together through shared id columns into a single dataset.
- This dataset was ordered so the columns – food name,
- category and nutrient values – were correctly aligned.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Linear Regression of the Protein Column
-\end_layout
-
-\begin_layout Section
-\noindent
-
-\series bold
-\size larger
-Root Mean Square Error
-\end_layout
-
-\begin_layout Standard
-The linear regression of the Protein Column of the Foundation Foods Database from the USDA was done by utilizing only a few major food nutrients – Carbohydrates,
- Lipids (Fats),
- Energy,
- Water,
- and Nitrogen – as feature columns to predict the values of the label column – Protein.
-\end_layout
-
-\begin_layout Standard
-The Linear Regression Algorithm performed better,
- with lower Root Mean Square Error values across 10 subsets compared to the Decision Tree and Random Forest algorithms.
- Hence,
- on these subsets,
- the Linear Regression Algorithm produced a prediction column with predicted protein values for the food items that were far closer to the original protein values in the label column than those produced by the Decision Tree and Random Forest algorithms.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/RMSE_scores.png
-	display false
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-\noindent
-
-\series bold
-\size larger
-Linear Correlation and Column Weight
-\end_layout
-
-\begin_layout Standard
-The Nitrogen column had the strongest linear correlation with the protein column and the highest column weight in predicting the values of the protein column.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/linear_correlation_Proteins (g)_Nitrogen (g).png
-	display false
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/column_weights.png
-	display false
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Note:
-
-\series default
- An attempt was made to utilize every available nutrient value for each food item.
- However,
- there were too many missing values for some nutrients (e.g.,
- vitamins,
- minerals,
- etc.).
- Even after performing the imputation of the missing values with the mean of the respective nutrient column,
- the results were noisy when printing the column weights (feature importances) and the linear correlation between the nutrient columns and the protein column.
-\end_layout
-
-\begin_layout Section
-Prediction Columns
-\end_layout
-
-\begin_layout Standard
-The first 10 protein values of the prediction columns made by the 3 algorithms – Linear Regression,
- Decision Tree,
- and Random Forest – and the label column with the true values:
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "C:/Users/Wes/Desktop/machine_learning_projects/datasets/food_data/prediction_columns.csv"
-lstparams "style={batch-file},firstline=0,lastline=11"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-And the next figure shows a scatter plot between the predicted values of the prediction columns made by the algorithms and the original protein values of the label column:
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename C:/Users/Wes/Desktop/machine_learning_projects/img/food_img/graphs/scatter_plot_prediction_columns.png
-	display false
-	scale 40
-
-\end_inset
-
-
+Source:
+ raw.githubusercontent.com/ageron/handson-ml/master/datasets/housing/housing.tgz
 \end_layout
 
 \begin_layout Standard
@@ -433,8 +252,8 @@ Full Code
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "code/food_data.py"
-lstparams "style={python-file},caption={Linear Regression of the protein column from the Food Dataset of the USDA.}"
+filename "code/housing_data.py"
+lstparams "style={python-file},caption={Housing Project: Linear Regression of the median house value prices. Computes prediction values for the median house value prices based on the label column.}"
 literal "false"
 
 \end_inset
@@ -461,7 +280,6 @@ Appendix
 \end_layout
 
 \begin_layout Chapter
-\noindent
 Formulas
 \end_layout
 
@@ -788,6 +606,52 @@ SD(Column')=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(Z_{i}-mean')^{2}}\simeq1
 \end_inset
 
 
+\end_layout
+
+\begin_layout Bibliography
+\noindent
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "1"
+key "key-1"
+literal "false"
+
+\end_inset
+
+Hands-On Machine Learning with Scikit-Learn,
+ Keras,
+ and TensorFlow:
+ Concepts,
+ Tools,
+ and Techniques to Build Intelligent Systems
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "2"
+key "key-2"
+literal "false"
+
+\end_inset
+
+Learning Deep Learning:
+ Theory and Practice of Neural Networks,
+ Computer Vision,
+ Natural Language Processing,
+ and Transformers Using Tensorflow
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "3"
+key "key-3"
+literal "false"
+
+\end_inset
+
+Mathematics for Machine Learning
 \end_layout
 
 \end_body
