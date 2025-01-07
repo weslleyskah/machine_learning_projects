@@ -59,13 +59,13 @@ PARENT_FILE_DIR = os.path.dirname(FILE_DIR)
 PARENT_DIR = os.path.dirname(PARENT_FILE_DIR)
 ## Datasets
 DATA_PATH = os.path.join(PARENT_DIR, "datasets")
-FOOD_DATA_PATH = os.path.join(DATA_PATH, "food_data")
+FOOD_DATA_PATH = os.path.join(DATA_PATH, "food_data_2")
 ## Models
 MODEL_DIR = os.path.join(PARENT_DIR, "models")
-FOOD_MODEL_DIR = os.path.join(MODEL_DIR, "food_models")
+FOOD_MODEL_DIR = os.path.join(MODEL_DIR, "food_models_2")
 ## Images
 IMAGES_DIR = os.path.join(PARENT_DIR, "img")
-FOOD_IMAGES_DIR = os.path.join(IMAGES_DIR, "food_img")
+FOOD_IMAGES_DIR = os.path.join(IMAGES_DIR, "food_img_2")
 GRAPHS_IMAGES_DIR = os.path.join(FOOD_IMAGES_DIR, "graphs")
 
 directories = [DATA_PATH, FOOD_DATA_PATH, MODEL_DIR, FOOD_MODEL_DIR, IMAGES_DIR, FOOD_IMAGES_DIR, GRAPHS_IMAGES_DIR]
