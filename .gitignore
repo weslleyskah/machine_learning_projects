@@ -10,5 +10,6 @@ __pycache__
 
 # Files
 ## Lyx Document
+*.lyx
 *.lyx~
 *.lyx#
