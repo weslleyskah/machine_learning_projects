@@ -1,49 +1,88 @@
-# Download and Run the python files from the projects
+# Machine Learning Projects
 
-```batch
-:: Install python: python.org/downloads/
+This repository contains machine learning projects that explore and analyze datasets to compare the performance of different ML algorithms. Key features include reshaped datasets, linear correlations, RMSE values, and predictions.
 
-:: Clone the repository
-git clone "https://github.com/weslleyskah/machine_learning_projects.git"
+---
 
-:: Navigate to the directory of the repository
+## Setup Instructions
+
+Follow these steps to download, install dependencies, and run the project:
+
+### 1. Prerequisites
+- Install Python: [Download Python](https://www.python.org/downloads/).
+
+### 2. Clone the Repository
+```bash
+git clone https://github.com/weslleyskah/machine_learning_projects.git
+```
+
+### 3. Navigate to the Repository
+```bash
 cd machine_learning_projects
+```
 
-:: Create a python virtual environment
+### 4. Create and Activate a Virtual Environment
+#### On Windows:
+```bash
 python -m venv venv
+.\venv\Scripts\activate
+```
 
-:: Activate the virtual environment
-.\venv\scripts\activate
+#### On macOS/Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-:: Install python packages
+### 5. Install Required Python Packages
+```bash
 python -m pip install matplotlib numpy pandas scipy scikit-learn joblib
+```
 
-:: Check if they were installed correctly
+### 6. Verify Installation
+```bash
 python -c "import matplotlib, numpy, pandas, scipy, sklearn, joblib"
+```
 
-:: Navigate to the code directory of the project
-cd food_project\code
+### 7. Navigate to the Project Code
+```bash
+cd food_project/code
+```
 
-:: Run a python file from the project
+### 8. Run the Python File
+```bash
 python food_data_2.py
-
-:: The python files will generally print information about the dataset to make comparisons between dfferent ML agorithms: reshaped dataframes from the original datasets, numerical and textual columns, linear correlations, standard deviations, RMSE values, prediction and label columns, etc.
-:: This will create the "datasets", "models" and "venv" folders inside the directory of the repository
-
-:: Navigate back to the directory of the repository
-cd machine_learning_projects
-
-:: Deactivate the virtual environment and leave
-.\venv\scripts\deactivate
 ```
 
-# Repository
+This will process the dataset, generate comparisons between ML algorithms, and produce outputs such as reshaped dataframes, RMSE values, and predictions. It will also create the following folders:
+- `datasets` – Contains dataset files.
+- `models` – Stores trained machine learning models.
+- `venv` – Virtual environment for dependency management.
 
-```     
-datasets          Dataset source and reshaped .csv files
-food_project      Food project using data from the U.S Department of Agriculture
-housing_project   Housing project from the book "Hands on Machine Learning"
-img               Images created with matplotlib for data analysis 
-models            Trained ML models
-venv              Virtual Environment
+### 9. Deactivate the Virtual Environment
+```bash
+cd ../..
+.\venv\Scripts\deactivate
 ```
+
+---
+
+## Repository Structure
+
+The repository is organized as follows:
+
+```
+datasets/          Contains source and reshaped .csv files from the datasets.
+food_project/      Food dataset analysis using U.S. Department of Agriculture data.
+housing_project/   Housing project from "Hands-On Machine Learning" by Aurélien Géron.
+img/               Visualization images generated using Matplotlib.
+models/            Trained machine learning models.
+venv/              Python virtual environment for dependency management.
+```
+
+---
+
+## Notes
+- The `food_project` directory includes files that process and analyze the dataset. These files output statistical metrics and insights to evaluate different ML models.
+- Ensure Python and dependencies are installed correctly before running the code.
+- For additional details, refer to the project-specific documentation inside each subdirectory.
