@@ -51,7 +51,7 @@ cd food_project/code
 
 ### 8. Run the Python File
 ```bash
-python food_data_2.py
+python food_project.py
 ```
 
 This will process the dataset, generate comparisons between ML algorithms, and produce outputs such as reshaped dataframes, RMSE values, and predictions. It will also create the following folders:
@@ -81,8 +81,3 @@ venv/              Python virtual environment for dependency management.
 ```
 
 ---
-
-## Notes
-- The `food_project` directory includes files that process and analyze the dataset. These files output statistical metrics and insights to evaluate different ML models.
-- Ensure Python and dependencies are installed correctly before running the code.
-- For additional details, refer to the project-specific documentation inside each subdirectory.
