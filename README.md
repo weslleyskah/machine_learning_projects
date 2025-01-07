@@ -1,6 +1,6 @@
 # Machine Learning Projects
 
-This repository contains machine learning projects that explore and analyze datasets to compare the performance of different ML algorithms. Key features include reshaped datasets, linear correlations, RMSE values, and predictions.
+This repository contains machine learning projects that explore and analyze datasets to compare the performance of different ML algorithms.
 
 ---
 
