@@ -18,7 +18,7 @@ The dataset was acquired from the author of the book: raw.githubusercontent.com/
 
 ---
 
-## Setup Instructions
+# Run
 
 Download, install dependencies, and run the project:
 
@@ -55,7 +55,7 @@ python3 food_project.py
 
 ---
 
-## Repository Structure
+## Repository
 
 ```
 datasets/          Contains source and reshaped .csv files from the datasets.
