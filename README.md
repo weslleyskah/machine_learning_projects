@@ -22,9 +22,8 @@ The dataset was acquired from the author of the book: raw.githubusercontent.com/
 
 Download, install dependencies, and run the project:
 
-### 1. Prerequisites
-- Install Python: [Download Python](https://www.python.org/downloads/).
-- Venv, Pip and Python Packages 
+### 1. Dependencies
+- Python, venv, pip and python packages 
 
 ### 2. Clone the Repository
 ```bash
