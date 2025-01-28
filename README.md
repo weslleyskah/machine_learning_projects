@@ -53,11 +53,6 @@ cd food_project/code
 python3 food_project.py
 ```
 
-This will process the dataset, generate comparisons between ML algorithms, and produce outputs such as reshaped dataframes, RMSE values, and predictions. It will also create the following folders:
-- `datasets` – Contains dataset files.
-- `models` – Stores trained machine learning models.
-- `venv` – Virtual environment for dependency management.
-
 ---
 
 ## Repository Structure
