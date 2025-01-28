@@ -24,6 +24,7 @@ Download, install dependencies, and run the project:
 
 ### 1. Prerequisites
 - Install Python: [Download Python](https://www.python.org/downloads/).
+- Venv, Pip and Python Packages 
 
 ### 2. Clone the Repository
 ```bash
@@ -35,37 +36,21 @@ git clone https://github.com/weslleyskah/machine_learning_projects.git
 cd machine_learning_projects
 ```
 
-### 4. Create and Activate a Virtual Environment
-#### On Windows:
+### 4. Create and Activate a Virtual Environment and Install Python Packages
 ```bash
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-#### On macOS/Linux:
-```bash
+sudo apt install python3-venv
 python3 -m venv venv
 source venv/bin/activate
-```
 
-### 5. Install Required Python Packages
-```bash
-python -m pip install matplotlib numpy pandas scipy scikit-learn joblib
-```
-
-### 6. Verify Installation
-```bash
+sudo apt install python3-pip
+python3 -m pip install matplotlib numpy pandas scipy scikit-learn joblib
 python -c "import matplotlib, numpy, pandas, scipy, sklearn, joblib"
 ```
 
-### 7. Navigate to the Project Code
+### 5. Run
 ```bash
 cd food_project/code
-```
-
-### 8. Run the Python File
-```bash
-python food_project.py
+python3 food_project.py
 ```
 
 This will process the dataset, generate comparisons between ML algorithms, and produce outputs such as reshaped dataframes, RMSE values, and predictions. It will also create the following folders:
@@ -73,17 +58,9 @@ This will process the dataset, generate comparisons between ML algorithms, and p
 - `models` – Stores trained machine learning models.
 - `venv` – Virtual environment for dependency management.
 
-### 9. Deactivate the Virtual Environment
-```bash
-cd ../..
-.\venv\Scripts\deactivate
-```
-
 ---
 
 ## Repository Structure
-
-The repository is organized as follows:
 
 ```
 datasets/          Contains source and reshaped .csv files from the datasets.
