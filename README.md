@@ -55,7 +55,7 @@ python3 food_project.py
 
 ---
 
-## Repository
+# Repository
 
 ```
 datasets/          Contains source and reshaped .csv files from the datasets.
