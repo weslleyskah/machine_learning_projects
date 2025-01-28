@@ -20,8 +20,6 @@ The dataset was acquired from the author of the book: raw.githubusercontent.com/
 
 # Run
 
-Download, install dependencies, and run the project:
-
 ### 1. Dependencies
 - Python, venv, pip and python packages 
 
